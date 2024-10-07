@@ -185,7 +185,7 @@ const Sun = () => {
     <>
       <pointLight
         position={[0, 0, 0]}
-        intensity={2000}
+        intensity={200}
         color={"white"}
         distance={500000}
       />
@@ -244,7 +244,7 @@ const SolarSystem = () => {
         <Stars
           radius={300}
           depth={60}
-          count={2000}
+          count={20000}
           factor={7}
           saturation={0}
           fade={true}
