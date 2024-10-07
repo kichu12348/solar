@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Stars, Html, Gltf } from "@react-three/drei";
+import { OrbitControls, Stars, Html, Gltf, useGLTF } from "@react-three/drei";
 import SunMod from "./models/sun.glb";
 import JupiterMod from "./models/jupiter.glb";
 import MarsMod from "./models/mars.glb";
@@ -143,6 +143,7 @@ const planets = {
   },
 };
 
+
 // constants
 const SCALE_FACTOR = 10;
 
@@ -184,9 +185,9 @@ const Sun = () => {
     <>
       <pointLight
         position={[0, 0, 0]}
-        intensity={200}
+        intensity={2000}
         color={"white"}
-        distance={50000}
+        distance={500000}
       />
       <Gltf src={SunMod} scale={0.3} />
     </>
@@ -227,6 +228,12 @@ const Controls = ({ timeScale, setTimeScale }) => {
 const SolarSystem = () => {
   const [timeScale, setTimeScale] = useState(0.01);
 
+  useEffect(()=>{
+    [SunMod, JupiterMod, MarsMod, MercuryMod, NeptuneMod, SaturnMod, UranusMod, VenusMod, EarthMod].forEach((model) => {
+      useGLTF.preload(model);
+    });
+  },[])
+
   return (
     <>
       <Canvas
@@ -237,7 +244,7 @@ const SolarSystem = () => {
         <Stars
           radius={300}
           depth={60}
-          count={20000}
+          count={2000}
           factor={7}
           saturation={0}
           fade={true}
