@@ -231,10 +231,9 @@ const SolarSystem = () => {
     <>
       <Canvas
         style={{ height: "100svh", width: "100vw" }}
-        camera={{ position: [0, 20, 50], fov: 60 }}
+        camera={{ position: [0, 20, 50], fov: 75 }}
       >
         <ambientLight intensity={0.5} />
-        <pointLight position={[0, 0, 0]} intensity={2} />
         <Stars
           radius={300}
           depth={60}
@@ -247,7 +246,11 @@ const SolarSystem = () => {
         {Object.keys(planets).map((name) => (
           <Planet key={name} name={name} timeScale={timeScale} />
         ))}
-        <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+        <OrbitControls 
+        enablePan={true} 
+        enableZoom={true} 
+        enableRotate={true} 
+        />
       </Canvas>
       <Controls timeScale={timeScale} setTimeScale={setTimeScale} />
     </>
